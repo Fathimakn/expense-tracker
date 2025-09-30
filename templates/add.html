@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+{% block title %}
+<title>ADD</title>
+{% endblock %}
+{% block content %}
+<ul class="nav-bar">
+    <li><a href="{% url 'home' %}">Home</a></li>
+</ul>
+<h1>ADD NEW </h1>
+<form method="POST">
+  {% csrf_token %}
+{{form.as_p}}
+  <button type="submit">ADD</button>
+  </form>
+{% endblock %}

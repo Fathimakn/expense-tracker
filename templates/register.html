@@ -1,0 +1,84 @@
+{% extends 'master.html' %}
+
+{% block title %}<title>REGISTER</title>{% endblock %}
+
+{% block content %}
+<h1>Registration</h1>
+<!-- Simple CSS styling -->
+<style>
+    h1 {
+    background: grey;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 300px;
+    border-radius: 5px;
+    }
+  .form-container {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+  }
+
+  .form-container input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  .form-container input[type="submit"] {
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .popup {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 300px;
+    border-radius: 5px;
+  }
+</style>
+
+<!-- Message box -->
+{% if messages %}
+  {% for message in messages %}
+    <div class="popup">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+<!-- Registration form -->
+<div class="form-container">
+  <form  method="post">
+    {% csrf_token %}
+    <input type="text" name="firstname" placeholder="First Name" required>
+    <input type="text" name="lastname" placeholder="Last Name">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password1" placeholder="Password" required>
+    <input type="password" name="password2" placeholder="Confirm Password" required>
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<!-- Auto-hide popup after 3 seconds -->
+<script>
+  setTimeout(function() {
+    const popup = document.querySelector('.popup');
+    if (popup) {
+      popup.style.display = 'none';
+    }
+  }, 3000);
+</script>
+
+{% endblock %}
